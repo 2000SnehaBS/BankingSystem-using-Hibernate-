@@ -1,11 +1,11 @@
 package com.sixdee.hibernate.controller;
 
-import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +20,14 @@ import com.sixdee.hibernate.dto.BankSystemDto;
 import com.sixdee.hibernate.dto.Deposit;
 import com.sixdee.hibernate.dto.Withdraw;
 import com.sixdee.hibernate.entity.BankSystem;
-import com.sixdee.hibernate.repository.AccountRepo;
+
 import com.sixdee.hibernate.service.BankSystemService;
 
 @RestController
 public class BankSystemController {
     @Autowired
     private BankSystemService banksystem;
-    @Autowired
-    private AccountRepo repo;
+    
     @PostMapping("/createcustomerdetails")
 	public BankSystem customerdetails(@RequestBody BankSystemDto bs) {
     System.out.println(bs.getAm().size());
@@ -68,10 +67,7 @@ public class BankSystemController {
 	
     	
     }
-    @GetMapping(value = "/pagination")
-    Page pagination(Pageable pageable) {
-    	return repo.findAll(pageable);
-	  }
+    
     
     
 }
