@@ -16,10 +16,10 @@ import com.sixdee.hibernate.entity.BankSystem;
 import com.sixdee.hibernate.util.SessionFactoryUtil;
 @Repository
 
-public class BankSystemDAOImpl implements BankSystemDAO {
+public class BankSystemDAOImpl {
 	@Autowired
     private SessionFactory sessionFactory ; 
-	@Override
+	
 	public BankSystem createcustomerdetails(BankSystem bk) {
 		 
 		 Session openSession = sessionFactory .openSession();
@@ -35,7 +35,7 @@ public class BankSystemDAOImpl implements BankSystemDAO {
     	 
 	}
 
-	@Override
+	
 	public BankSystem getcustomerdetails(long customerId) {
 	Session openSession = sessionFactory .openSession();
    	 Transaction beginTransaction = openSession.beginTransaction();
@@ -43,7 +43,7 @@ public class BankSystemDAOImpl implements BankSystemDAO {
 		return bs;
 	}
 
-	@Override
+	
 	public BankSystem updatecustomerbalance(BankSystem customerdetails) {
 		Session openSession = sessionFactory .openSession();
 	   	Transaction beginTransaction = openSession.beginTransaction();
@@ -54,7 +54,7 @@ public class BankSystemDAOImpl implements BankSystemDAO {
 		return customerdetails ;
 	}
 	
-	@Override
+	
 	public BankSystem withdrawmoney(BankSystem customerdetails) {
 		Session openSession = sessionFactory .openSession();
 	   	Transaction beginTransaction = openSession.beginTransaction();
@@ -64,7 +64,7 @@ public class BankSystemDAOImpl implements BankSystemDAO {
 		
 		return customerdetails ;
 	}
-	@Override
+	
 	public  void closeAccount(BankSystem customer) {
 		Session openSession = sessionFactory .openSession();
       	 
@@ -85,7 +85,7 @@ public class BankSystemDAOImpl implements BankSystemDAO {
 			
 		}
 
-	@Override
+	
 	public List<BankSystem> getallcustomerdetails() {
 		Session openSession = sessionFactory .openSession();
      	 Transaction beginTransaction = openSession.beginTransaction();

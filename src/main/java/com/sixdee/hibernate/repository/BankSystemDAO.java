@@ -2,11 +2,13 @@ package com.sixdee.hibernate.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.sixdee.hibernate.entity.BankSystem;
 
-public interface BankSystemDAO {
+public interface BankSystemDAO extends JpaRepository<BankSystem, Long>{
 
-	BankSystem createcustomerdetails(BankSystem bk);
+	/*BankSystem createcustomerdetails(BankSystem bk);
 
 	BankSystem getcustomerdetails(long customerId);
 
@@ -15,6 +17,6 @@ public interface BankSystemDAO {
 
 	void closeAccount(BankSystem customerdetails);
 
-	List<BankSystem> getallcustomerdetails();
+	List<BankSystem> getallcustomerdetails();*/
 
 }

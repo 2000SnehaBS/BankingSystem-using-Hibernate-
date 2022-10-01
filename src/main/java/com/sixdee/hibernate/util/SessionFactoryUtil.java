@@ -9,7 +9,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 
 
-@org.springframework.context.annotation.Configuration
+
 public class SessionFactoryUtil {
 	
 	
@@ -29,7 +29,7 @@ private static SessionFactory buildSessionFactory() {
     	}
 	return sessionFactory;
 }
-@Bean
+
 public static SessionFactory getSessionFactory() {
 	if(sessionFactory == null) sessionFactory = buildSessionFactory();
     return sessionFactory;

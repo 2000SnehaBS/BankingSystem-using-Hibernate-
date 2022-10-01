@@ -2,6 +2,7 @@ package com.sixdee.hibernate.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,37 +37,41 @@ public class BankSystemServiceImpl implements BankSystemService {
 	}
 	bk.setAm(list);
 	System.out.println("..........."+ bk.toString());
-	return dao.createcustomerdetails(bk);
+	return dao.save(bk);
 		
 	}
 	@Override
 	public BankSystem deposit(Deposit bs) {
-		BankSystem customerdetails = dao.getcustomerdetails(bs.getCustomerId());
-		if( customerdetails != null) {
-   		 int currentbalance =  customerdetails.getBalance();
+		BankSystem bankSystem=null;
+		Optional<BankSystem> customerdetails = dao.findById(bs.getCustomerId());
+		if( customerdetails.isPresent()) {
+			 bankSystem = customerdetails.get();
+   		 int currentbalance =  bankSystem.getBalance();
    		 
    		 currentbalance = currentbalance + bs.getDepositamount();
-   		 customerdetails.setBalance(currentbalance);
-   		 dao.updatecustomerbalance(customerdetails);
+   		bankSystem.setBalance(currentbalance);
+   		 dao.save(bankSystem);
    		  
    	 }
    	 else {
    		 throw  new RuntimeException("Invalid CustomerId");
    	 }
    	 
-		return customerdetails;
+		return bankSystem;
 	}
 	
 	
 	@Override
 	public BankSystem withdraw(Withdraw bs) {
-		BankSystem customerdetails = dao.getcustomerdetails(bs.getCustomerId());
-		if( customerdetails != null) {
-   		 int currentbalance =  customerdetails.getBalance();
+		BankSystem bankSystem=null;
+		Optional<BankSystem> customerdetails = dao.findById(bs.getCustomerId());
+		if( customerdetails.isPresent() ) {
+		  bankSystem = customerdetails.get();
+   		 int currentbalance =  bankSystem.getBalance();
    		 if(currentbalance>bs.getWithdrawamount()) {
    			 currentbalance = currentbalance - bs.getWithdrawamount();
-   	   		 customerdetails.setBalance(currentbalance);
-   	   		 dao.updatecustomerbalance(customerdetails);
+   			bankSystem.setBalance(currentbalance);
+   	   		 dao.save(bankSystem);
    			 
    		 }
    		 else {
@@ -79,14 +84,14 @@ public class BankSystemServiceImpl implements BankSystemService {
    		 throw  new RuntimeException("Invalid CustomerId");
    	 }
    	 
-		return customerdetails;
+		return bankSystem;
 	}
 	@Override
 	public String closeaccount(long customerId) {
 		String msg = "";
-		BankSystem customerdetails = dao.getcustomerdetails(customerId);
-		if(customerdetails != null) {
-			dao.closeAccount(customerdetails);
+		Optional<BankSystem> customerdetails = dao.findById(customerId);
+		if(customerdetails.isPresent() ) {
+			dao.deleteById(customerdetails.get().getCustomerId());
 			msg = "account deleted successfully";
 		}
 		else {
@@ -98,13 +103,17 @@ public class BankSystemServiceImpl implements BankSystemService {
 	}
 	@Override
 	public BankSystem getcustomerbyid(long customerId) {
-		BankSystem getcustomerdetails = dao.getcustomerdetails(customerId);
-		return getcustomerdetails;
+		Optional<BankSystem> getcustomerdetails = dao.findById(customerId);
+		if(getcustomerdetails.isPresent()) {
+			return getcustomerdetails.get();
+		}
+		return null;
+		
 		
 	}
 	@Override
 	public List<BankSystem> getallcustomerdetails() {
-		return dao.getallcustomerdetails();
+		return dao.findAll();
 		
 	}
 	
