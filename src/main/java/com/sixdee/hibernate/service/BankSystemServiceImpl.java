@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.sixdee.hibernate.dto.AccountMasterDto;
@@ -15,6 +17,7 @@ import com.sixdee.hibernate.dto.Deposit;
 import com.sixdee.hibernate.dto.Withdraw;
 import com.sixdee.hibernate.entity.AccountMaster;
 import com.sixdee.hibernate.entity.BankSystem;
+import com.sixdee.hibernate.entity.PagedResponse;
 import com.sixdee.hibernate.repository.BankSystemDAO;
 @Service
 public class BankSystemServiceImpl implements BankSystemService {
@@ -115,6 +118,11 @@ public class BankSystemServiceImpl implements BankSystemService {
 	public List<BankSystem> getallcustomerdetails() {
 		return dao.findAll();
 		
+	}
+	@Override
+	public PagedResponse<BankSystem> getallcustomerdetails(Pageable pageable, Specification<BankSystem> spec) {
+		
+		return null;
 	}
 	
 	

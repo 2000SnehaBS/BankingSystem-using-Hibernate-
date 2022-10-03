@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 
 import com.sixdee.hibernate.dto.BankSystemDto;
 import com.sixdee.hibernate.dto.Deposit;
@@ -96,7 +97,7 @@ public class BankSystemController {
         Pageable pageable = (size != 0
                 ? PageRequest.of(page - 1, size,order.trim().equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC,sort)
                 : Pageable.unpaged());
-        return service.findAllHolidays(pageable, spec);
+    	return  banksystem.getallcustomerdetails(pageable, spec);
     
     
 }
