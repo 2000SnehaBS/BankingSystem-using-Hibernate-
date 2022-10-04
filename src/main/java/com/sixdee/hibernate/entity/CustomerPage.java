@@ -1,4 +1,4 @@
-package com.sixdee.hibernate.entity;
+/*package com.sixdee.hibernate.entity;
 
 public class CustomerPage {
 	private long customerId;
@@ -24,3 +24,4 @@ public class CustomerPage {
 		this.userName = userName;
 	}
 }
+*/

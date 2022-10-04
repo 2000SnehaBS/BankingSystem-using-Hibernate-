@@ -1,4 +1,4 @@
-package com.sixdee.hibernate.repository;
+/*package com.sixdee.hibernate.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class CustomerCriteriaRepo {
 		return null;
     	
     }
-    /*private Predicate getpredicate(CustomerPage customerpage, Root<BankSystem> customerRoot) {
+    private Predicate getpredicate(CustomerPage customerpage, Root<BankSystem> customerRoot) {
     	
     	List<Predicate> list = new ArrayList<Predicate>();
     	if(Objects.nonNull(customerpage.getFirstName())){
@@ -57,6 +57,7 @@ public class CustomerCriteriaRepo {
         return criteriaBuilder.and(list.toArray(new Predicate[0]));
 
     	
-    }*/
+    }
 
 }
+*/

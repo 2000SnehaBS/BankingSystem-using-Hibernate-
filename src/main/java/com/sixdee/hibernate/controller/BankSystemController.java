@@ -1,7 +1,5 @@
 package com.sixdee.hibernate.controller;
 
-
-
 import java.util.Date;
 import org.springframework.data.domain.Sort;
 import java.util.List;
@@ -100,5 +98,5 @@ public class BankSystemController {
     	return  banksystem.getallcustomerdetails(pageable, spec);
     
     
-}
+   }
 }

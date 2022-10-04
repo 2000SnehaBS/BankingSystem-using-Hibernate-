@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -119,12 +120,22 @@ public class BankSystemServiceImpl implements BankSystemService {
 		return dao.findAll();
 		
 	}
-	@Override
+	/*@Override
 	public PagedResponse<BankSystem> getallcustomerdetails(Pageable pageable, Specification<BankSystem> spec) {
 		
 		return null;
-	}
+	}*/
 	
+	
+	public PagedResponse<BankSystem> getallcustomerdetails( Specification<BankSystem> spec,org.springframework.data.domain.Pageable pageable) {
+		Page<BankSystem> entity =BankSystemDAO.findAll(spec,pageable);
+		    
+		//public PagedResponse(List<T> content, int page, int size, long totalElements, int totalPages, boolean last) {
+		//return new PagedResponse<>(entity.getContent(),entity.getNumber(),entity.getSize(),entity.getTotalElements(),entity.getTotalPages(),entity.isLast());
+		return new PagedResponse<>(entity.getContent(), entity.getNumber(), entity.getSize(),
+		        entity.getTotalElements(), entity.getTotalPages(), entity.isLast());
+		    
+	}
 	
 	
 }
