@@ -20,6 +20,7 @@ import com.sixdee.hibernate.entity.AccountMaster;
 import com.sixdee.hibernate.entity.BankSystem;
 import com.sixdee.hibernate.entity.PagedResponse;
 import com.sixdee.hibernate.repository.BankSystemDAO;
+import com.sixdee.hibernate.repository.BankSystemDAOImpl;
 @Service
 public class BankSystemServiceImpl implements BankSystemService {
     @Autowired
@@ -125,17 +126,15 @@ public class BankSystemServiceImpl implements BankSystemService {
 		
 		return null;
 	}*/
-	
-	
-	public PagedResponse<BankSystem> getallcustomerdetails( Specification<BankSystem> spec,org.springframework.data.domain.Pageable pageable) {
-		Page<BankSystem> entity =BankSystemDAO.findAll(spec,pageable);
-		    
-		//public PagedResponse(List<T> content, int page, int size, long totalElements, int totalPages, boolean last) {
-		//return new PagedResponse<>(entity.getContent(),entity.getNumber(),entity.getSize(),entity.getTotalElements(),entity.getTotalPages(),entity.isLast());
+	@Override
+	public PagedResponse<BankSystem> findallcustomerdetails(Pageable pageable, Specification<BankSystem> spec) {
+		Page<BankSystem> entity = dao.findAll(spec, pageable);
 		return new PagedResponse<>(entity.getContent(), entity.getNumber(), entity.getSize(),
 		        entity.getTotalElements(), entity.getTotalPages(), entity.isLast());
-		    
 	}
+	
+	
+	
 	
 	
 }

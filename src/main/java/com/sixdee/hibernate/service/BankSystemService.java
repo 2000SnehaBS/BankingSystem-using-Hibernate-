@@ -29,7 +29,7 @@ public interface BankSystemService {
 
 	//public PagedResponse<BankSystem> getallcustomerdetails(Pageable pageable, Specification<BankSystem> spec);
 	
-	public PagedResponse<BankSystem> getallcustomerdetails( Specification<BankSystem> spec,Pageable pageable);
+	public PagedResponse<BankSystem> findallcustomerdetails( Pageable pageable,Specification<BankSystem> spec);
 
 	
 	

@@ -75,7 +75,7 @@ public class BankSystemController {
 	
     	
     }
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,value="/PagedResponse")
     public PagedResponse<BankSystem> getBankSystem(
             @RequestParam(value = "customerId", required =false) Integer customerId,
             @RequestParam(value = "customerName", required = false) String customerName,
@@ -95,7 +95,7 @@ public class BankSystemController {
         Pageable pageable = (size != 0
                 ? PageRequest.of(page - 1, size,order.trim().equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC,sort)
                 : Pageable.unpaged());
-    	return  banksystem.getallcustomerdetails(pageable, spec);
+    	return  banksystem.findallcustomerdetails(pageable, spec);
     
     
    }
